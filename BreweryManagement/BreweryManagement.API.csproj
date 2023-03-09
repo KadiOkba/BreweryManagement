@@ -7,8 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.3">
+	   <PrivateAssets>all</PrivateAssets>
+	   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BreweryManagement.Application\BreweryManagement.Application.csproj" />
+    <ProjectReference Include="..\BreweryManagement.Persistence\BreweryManagement.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

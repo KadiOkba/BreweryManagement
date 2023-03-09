@@ -1,10 +1,11 @@
+using BreweryManagement.API.Controllers;
+using BreweryManagement.Application.Beers.Commands.Create;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BreweryManagement.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class BeerController : ControllerBase
+
+    public class BeerController : BaseController
     {
 
         private readonly ILogger<BeerController> _logger;
@@ -13,7 +14,12 @@ namespace BreweryManagement.Controllers
         {
             _logger = logger;
         }
-
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] CreateBeerCommand command)
+        {
+            await Mediator.Send(command);
+            return Ok();
+        }
 
     }
 }

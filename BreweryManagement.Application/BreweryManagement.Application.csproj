@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Beers\Commands\" />
-    <Folder Include="Beers\Queries\" />
+    <PackageReference Include="FluentValidation" Version="11.5.1" />
+    <PackageReference Include="MediatR" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BreweryManagement.Persistence\BreweryManagement.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
