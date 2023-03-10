@@ -40,14 +40,15 @@ namespace BreweryManagement.API.Middlewares
                 case ValidationException validationException:
                     code = HttpStatusCode.BadRequest;
                     result = JsonConvert.SerializeObject(validationException.Failures);
-
                     break;
-
                 case NotValidException badRequestException:
                     code = HttpStatusCode.BadRequest;
                     result = badRequestException.Message;
                     break;
-             
+                case NotFoundException notFoundException:
+                    code = HttpStatusCode.NotFound;
+                    result = notFoundException.Message;
+                    break;
                 case AlreadyExistsExeption alreadyExistsExeption:
                     code = HttpStatusCode.Conflict;
                     result = alreadyExistsExeption.Message;
