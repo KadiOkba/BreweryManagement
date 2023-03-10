@@ -33,29 +33,29 @@ namespace BreweryManagement.API.Middlewares
         {
             var code = HttpStatusCode.InternalServerError;
 
-            var result = string.Empty;
+            object result = null!;
 
             switch (exception)
             {
                 case ValidationException validationException:
                     code = HttpStatusCode.BadRequest;
-                    result = JsonConvert.SerializeObject(validationException.Failures);
+                    result = new { error = JsonConvert.SerializeObject(validationException.Failures) };
                     break;
                 case NotValidException badRequestException:
                     code = HttpStatusCode.BadRequest;
-                    result = badRequestException.Message;
+                    result = new { error = badRequestException.Message };
                     break;
                 case NotFoundException notFoundException:
                     code = HttpStatusCode.NotFound;
-                    result = notFoundException.Message;
+                    result = new { error = notFoundException.Message };
                     break;
                 case AlreadyExistsExeption alreadyExistsExeption:
                     code = HttpStatusCode.Conflict;
-                    result = alreadyExistsExeption.Message;
+                    result = new { error = alreadyExistsExeption.Message };
                     break;
                 case UnauthorizedAccessException unauthorized:
                     code = HttpStatusCode.Unauthorized;
-                    result = unauthorized.Message;
+                    result = new { error = unauthorized.Message };
                     break;
                 default:
                     break;
@@ -65,12 +65,12 @@ namespace BreweryManagement.API.Middlewares
 
             context.Response.StatusCode = (int)code;
             context.Response.ContentType = "application/json";
-            if (result == string.Empty)
+            if (result == null)
             {
-                result = JsonConvert.SerializeObject(new { error = exception.Message });
+                result = new { error = exception.Message };
             }
             context.Response.Headers.Clear();
-            return context.Response.WriteAsync(result);
+            return context.Response.WriteAsync(JsonConvert.SerializeObject(result));
         }
     }
 

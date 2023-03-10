@@ -4,12 +4,11 @@ namespace BreweryManagement.Domain
 {
     public class Brewer : BaseEntity
     {
-        public Brewer(string name)
+        public Brewer()
         {
             Beers = new List<Beer>();
-            Name = name;
         }
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         public List<Beer> Beers { get; set; }
     }

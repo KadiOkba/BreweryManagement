@@ -30,8 +30,7 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var context = scope.ServiceProvider.GetService<BreweryDb>();
-        context!.Database.Migrate();
-        context.Database.EnsureCreated();
+        context.seed();
     }
     catch (Exception ex)
     {

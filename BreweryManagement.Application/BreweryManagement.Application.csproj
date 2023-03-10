@@ -15,4 +15,8 @@
     <ProjectReference Include="..\BreweryManagement.Persistence\BreweryManagement.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="WholesalerStocks\Queries\" />
+  </ItemGroup>
+
 </Project>

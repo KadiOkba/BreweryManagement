@@ -4,12 +4,11 @@ namespace BreweryManagement.Domain
 {
     public class Wholesaler : BaseEntity
     {
-        public Wholesaler(string name)
+        public Wholesaler()
         {
             Stocks = new List<WholesalerStock>();
-            Name = name;
         }
-        public string Name { get; set; }
+        public required string Name { get; set; }
         public List<WholesalerStock> Stocks { get; set; }
     }
 }

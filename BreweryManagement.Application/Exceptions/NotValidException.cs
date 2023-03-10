@@ -9,7 +9,7 @@ namespace BreweryManagement.Application.Exceptions
 {
     public class NotValidException : Exception
     {
-        public NotValidException() : base()
+        public NotValidException(string message) : base(message)
         {
 
         }

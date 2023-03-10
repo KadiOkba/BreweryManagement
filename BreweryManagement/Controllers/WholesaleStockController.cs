@@ -2,33 +2,30 @@ using BreweryManagement.API.Controllers;
 using BreweryManagement.Application.Beers.Commands.Create;
 using BreweryManagement.Application.Beers.Commands.Delete;
 using BreweryManagement.Application.Beers.Queries.GetBeersByBrewer;
+using BreweryManagement.Application.WholesalerStocks.Commands.Stock;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BreweryManagement.Controllers
 {
 
-    public class BeerController : BaseController
+    public class WholesaleStockController : BaseController
     {
 
-        private readonly ILogger<BeerController> _logger;
+        private readonly ILogger<WholesaleStockController> _logger;
 
-        public BeerController(ILogger<BeerController> logger)
+        public WholesaleStockController(ILogger<WholesaleStockController> logger)
         {
             _logger = logger;
         }
-        [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] GetBeersByBrewerQuery query)
-        {
-            return Ok(await Mediator.Send(query));
-        }
+       
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateBeerCommand command)
+        public async Task<IActionResult> Post([FromBody] StockBeerToWholesalerCommand command)
         {
             await Mediator.Send(command);
             return Ok();
         }
-        [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] DeleteBeerCommand command)
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateWholesalerStockCommand command)
         {
             await Mediator.Send(command);
             return Ok();
