@@ -17,8 +17,7 @@ namespace BreweryManagement.Application.Beers.Commands.Delete
         {
             this.db = db;
         }
-
-        async Task IRequestHandler<DeleteBeerCommand>.Handle(DeleteBeerCommand request, CancellationToken cancellationToken)
+        public async Task Handle(DeleteBeerCommand request, CancellationToken cancellationToken)
         {
             var beer = db.Beers.FirstOrDefault(x => x.Id == request.Id);
             if (beer == null) throw new NotFoundException(nameof(beer), request.Id);
